@@ -8,8 +8,11 @@ namespace GADE_6112_Project2
 {
 
     abstract class Character : Tile
-    {
+    {   ///Part 3 code
+        public Weapon weapon;
+        public Tile[] currentVision;
 
+        ///
         protected int hp; // Health points 
         protected int maxhp; // Max Health
         protected int damage; // Attack damage
