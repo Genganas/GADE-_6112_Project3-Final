@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "GADE_6112_Project2/1.0.0": {
+        "runtime": {
+          "GADE_6112_Project2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GADE_6112_Project2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
