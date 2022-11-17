@@ -9,6 +9,7 @@ namespace GADE_6112_Project2
     internal class GameEngine
     {
         private Map map;
+        private Shop shop;
         private static readonly string
             HeroChar = "ඞ",
             SwampCreatureChar = "Ω",
@@ -16,15 +17,19 @@ namespace GADE_6112_Project2
             EmptyChar = ".",
             GoldChar = "⌬",
             MageChar = "m",
-            Weaponchar = "W",
-            Leaderchar = "☯";///3.1
+            BowChar = "🏹",
+            DaggerChar = "🗡",
+            LongSwordChar = "⚔",
+            RifleChar = "𒌙",
+            Leaderchar = "♔";///3.1
         public GameEngine()
         {
             map = new Map(10, 15, 10, 15, 5, 5);
+            shop = new Shop(map.HeroPlayer);
         }
 
         public Map Map { get { return map; } }
-
+        public Shop GameShop { get => shop; }
 
         public bool MovePlayer(Character.Movement direction) //Movement for player 
         {
@@ -94,6 +99,7 @@ namespace GADE_6112_Project2
             }
             else
             {
+                map.UpdateVision();
                 return false;
             }
         }
@@ -236,9 +242,7 @@ namespace GADE_6112_Project2
                         case Tile.Tiletype.Gold:
                             stringBuilder.Append(GoldChar);//3.1
                             break;
-                        case Tile.Tiletype.Weapon:
-                            stringBuilder.Append(Weaponchar);
-                            break;
+     
 
 
                         default:

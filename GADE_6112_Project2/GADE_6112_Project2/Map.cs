@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,8 +63,24 @@ namespace GADE_6112_Project2
         public Hero HeroPlayer { get { return hero; } set { hero = value; } }
         public Enemy[] Enemies { get { return enemies; } set { enemies = value; } }
         public Item[] Items { get { return items; } set { items = value; } } //3.1
-       
-       
+
+        private Leader CreateLeader()
+        {
+            int rndmX, rndmY;
+            bool loop;
+            do
+            {
+                rndmX = rnd.Next(1, mapWidth - 1);
+                rndmY = rnd.Next(1, mapHeight - 1);
+
+                loop = (map[rndmY, rndmX] is not EmptyTile);
+            } while (loop);
+
+            Leader leader = new Leader(rndmX, rndmY);
+            map[rndmY, rndmX] = leader;
+            AddEnemy(leader);
+            return leader;
+        }
         // Updates the vision for each player
         public void UpdateVision()
         {
@@ -92,11 +109,9 @@ namespace GADE_6112_Project2
         {
             for (int i = 0; i < items.Length; i++)
             {
-                if (items[i] is null) continue;
-
-                if (items[i].X == x && items[i].Y == y)
+                if (items[i] is not null && items[i].X == x && items[i].Y == y)
                 {
-                    Item item = items[i];
+                    Item? item = items[i];
                     items[i] = null;
                     return item;
                 }
@@ -108,17 +123,6 @@ namespace GADE_6112_Project2
         {
             bool loop;
             int rndmX, rndmY;
-            int randWeapon = 0;
-            int randEnemy = 0;
-
-            for (int i = 0; i < 1; i++)
-            {
-                randWeapon = rnd.Next(0, 4);
-            }
-            for (int i = 0; i < 1; i++)
-            {
-                randEnemy = rnd.Next(0, 2);
-            }
             do
             {
                 rndmX = rnd.Next(2, mapWidth - 2);
@@ -142,78 +146,44 @@ namespace GADE_6112_Project2
                     map[rndmY, rndmX].Type = Tile.Tiletype.Hero;
                     return tmp;
                 case Tile.Tiletype.Enemy:
-                    if (randEnemy == 0)
+                    if (rnd.Next(2) == 0)
                     {
                         Swamp_Creature swampCreature = new Swamp_Creature(rndmX, rndmY);
                         map[rndmY, rndmX] = swampCreature;
-                        map[rndmY, rndmX].Type = Tile.Tiletype.Enemy;
                         AddEnemy(swampCreature);
                         return swampCreature;
                     }
                     else
-                    if (randEnemy == 1)
                     {
                         Mage mage = new Mage(rndmX, rndmY);
                         map[rndmY, rndmX] = mage;
-                        map[rndmY, rndmX].Type = Tile.Tiletype.Enemy;
                         AddEnemy(mage);
                         return mage;
                     }
-                    else
+                   
+                
+                case Tile.Tiletype.Weapon:
+                    Weapon weapon = rnd.Next(4) switch
                     {
-                        Leader leader = new Leader(rndmX, rndmY);
-                        map[rndmY, rndmX] = leader;
-                        map[rndmY, rndmX].Type = Tile.Tiletype.Enemy;
-                        AddEnemy(leader);
-                        return leader;
-                    }
+                        0 => new RangedWeapon(RangedWeapon.Types.Longbow, rndmX, rndmY),
+                        1 => new RangedWeapon(RangedWeapon.Types.Rifle, rndmX, rndmY),
+                        2 => new MeleeWeapon(MeleeWeapon.Types.Dagger, rndmX, rndmY),
+                        3 => new MeleeWeapon(MeleeWeapon.Types.LongSword, rndmX, rndmY),
+
+                        //unreachable but here for error prevention.
+                        _ => new MeleeWeapon(MeleeWeapon.Types.LongSword)
+                    };
+                    map[rndmY, rndmX] = weapon;
+                    AddItem(weapon);
+                    return weapon;
+                default:
                 case Tile.Tiletype.Gold:
                     Gold gold = new Gold(rndmX, rndmY);
                     map[rndmX, rndmY] = gold;
                     AddItem(gold);
                     map[rndmY, rndmX].Type = Tile.Tiletype.Gold;
                     return gold;
-                case Tile.Tiletype.Weapon:
-                    if (randWeapon == 0)
-                    {
-                        Weapon dagger = new MeleeWeapon(rndmX,rndmY, MeleeWeapon.Types.Dagger);
-                        map[rndmX, rndmY] = dagger;
-                        AddItem(dagger);
-                        map[rndmY, rndmX].Type = Tile.Tiletype.Weapon;
-                        return dagger;
-                    }
-                    else
-                    if (randWeapon == 1)
-                    {
-                        Weapon longsword = new MeleeWeapon( rndmX,rndmY, MeleeWeapon.Types.LongSword);
-                        map[rndmX, rndmY] = longsword;
-                        AddItem(longsword);
-                        map[rndmY, rndmX].Type = Tile.Tiletype.Weapon;
-                        return longsword;
-                    }
-                    else
-                    if (randWeapon == 2)
-                    {
-                        Weapon rifle = new RangedWeapon(rndmX, rndmY, RangedWeapon.Types.Rifle);
-                        map[rndmX, rndmY] = rifle;
-                        AddItem(rifle);
-                        map[rndmY, rndmX].Type = Tile.Tiletype.Weapon;
-                        return rifle;
-                    }
-                    else
-                        if (randWeapon == 3)
-                    {
-                        Weapon longbow = new RangedWeapon(rndmX, rndmY, RangedWeapon.Types.Longbow);
-                        map[rndmX, rndmY] = longbow;
-                        AddItem(longbow);
-                        map[rndmY, rndmX].Type = Tile.Tiletype.Weapon;
-                        return longbow;
-                    }
-                    else
-                        return null;
-                  
-                
-                default:
+               
                     EmptyTile empty = new EmptyTile(rndmX, rndmY);
                     map[rndmY, rndmX] = empty;
                     map[rndmY, rndmX].Type = Tile.Tiletype.EmptyTile;

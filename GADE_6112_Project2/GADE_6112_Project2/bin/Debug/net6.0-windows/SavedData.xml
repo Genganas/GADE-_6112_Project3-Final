@@ -2,7 +2,7 @@
 <NewDataSet>
   <Table1>
     <ObjectType>Hero</ObjectType>
-    <Xpos>6</Xpos>
+    <Xpos>3</Xpos>
     <YPos>7</YPos>
     <Hp>99</Hp>
     <MaxHp>99</MaxHp>
@@ -10,34 +10,34 @@
   </Table1>
   <Table1>
     <ObjectType>Mage</ObjectType>
-    <Xpos>2</Xpos>
-    <YPos>5</YPos>
+    <Xpos>4</Xpos>
+    <YPos>7</YPos>
     <Hp>5</Hp>
     <MaxHp>5</MaxHp>
     <Gold>12</Gold>
   </Table1>
   <Table1>
     <ObjectType>Swamp Creature</ObjectType>
-    <Xpos>3</Xpos>
-    <YPos>8</YPos>
+    <Xpos>7</Xpos>
+    <YPos>6</YPos>
     <Hp>10</Hp>
     <MaxHp>10</MaxHp>
     <Gold>12</Gold>
   </Table1>
   <Table1>
     <ObjectType>Swamp Creature</ObjectType>
-    <Xpos>4</Xpos>
+    <Xpos>5</Xpos>
     <YPos>3</YPos>
     <Hp>10</Hp>
     <MaxHp>10</MaxHp>
     <Gold>12</Gold>
   </Table1>
   <Table1>
-    <ObjectType>Swamp Creature</ObjectType>
-    <Xpos>8</Xpos>
-    <YPos>5</YPos>
-    <Hp>10</Hp>
-    <MaxHp>10</MaxHp>
+    <ObjectType>Mage</ObjectType>
+    <Xpos>4</Xpos>
+    <YPos>4</YPos>
+    <Hp>5</Hp>
+    <MaxHp>5</MaxHp>
     <Gold>12</Gold>
   </Table1>
   <Table1>
@@ -47,14 +47,6 @@
     <Hp>10</Hp>
     <MaxHp>10</MaxHp>
     <Gold>12</Gold>
-  </Table1>
-  <Table1>
-    <ObjectType>Gold</ObjectType>
-    <Xpos>8</Xpos>
-    <YPos>9</YPos>
-    <Hp>-1</Hp>
-    <MaxHp>-1</MaxHp>
-    <Gold>4</Gold>
   </Table1>
   <Table1>
     <ObjectType>Gold</ObjectType>
@@ -62,15 +54,31 @@
     <YPos>2</YPos>
     <Hp>-1</Hp>
     <MaxHp>-1</MaxHp>
-    <Gold>5</Gold>
+    <Gold>3</Gold>
   </Table1>
   <Table1>
     <ObjectType>Gold</ObjectType>
-    <Xpos>6</Xpos>
-    <YPos>6</YPos>
+    <Xpos>4</Xpos>
+    <YPos>3</YPos>
     <Hp>-1</Hp>
     <MaxHp>-1</MaxHp>
-    <Gold>3</Gold>
+    <Gold>1</Gold>
+  </Table1>
+  <Table1>
+    <ObjectType>Gold</ObjectType>
+    <Xpos>5</Xpos>
+    <YPos>2</YPos>
+    <Hp>-1</Hp>
+    <MaxHp>-1</MaxHp>
+    <Gold>4</Gold>
+  </Table1>
+  <Table1>
+    <ObjectType>Gold</ObjectType>
+    <Xpos>3</Xpos>
+    <YPos>2</YPos>
+    <Hp>-1</Hp>
+    <MaxHp>-1</MaxHp>
+    <Gold>1</Gold>
   </Table1>
   <Table1>
     <ObjectType>Gold</ObjectType>
@@ -79,13 +87,5 @@
     <Hp>-1</Hp>
     <MaxHp>-1</MaxHp>
     <Gold>4</Gold>
-  </Table1>
-  <Table1>
-    <ObjectType>Gold</ObjectType>
-    <Xpos>7</Xpos>
-    <YPos>8</YPos>
-    <Hp>-1</Hp>
-    <MaxHp>-1</MaxHp>
-    <Gold>1</Gold>
   </Table1>
 </NewDataSet>

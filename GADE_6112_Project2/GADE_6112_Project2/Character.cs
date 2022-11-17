@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace GADE_6112_Project2
 {
 
-    abstract class Character : Tile
+   public abstract class Character : Tile
     {   ///Part 3 code
-        public Weapon weapon;
+        protected Weapon? weapon;
         public Tile[] currentVision;
 
         ///
@@ -47,13 +47,17 @@ namespace GADE_6112_Project2
 
             if (weapon is null)
             {
-                target.hp -= this.wDamage;
+                target.hp -= this.damage;
             }
             else
             {
-                target.hp -= weapon.wDmg;
-                weapon.getWeaponDurability = = 1;
-                if ()
+                target.hp -= weapon.Dmg;
+
+                weapon.Durability -= 1;
+                if (weapon.Durability <= 0 )
+                {
+                    weapon = null;
+                }
             }
         }
 
@@ -64,7 +68,8 @@ namespace GADE_6112_Project2
         }
         public virtual bool CheckRange(Character target) // Checks fot the range 
         {
-            return !(DistanceTo(target) > 1);
+            if (weapon is null) return (DistanceTo(target) <= 1);
+            else return (DistanceTo(target) <= weapon.weaponRange);
         }
 
         private int DistanceTo(Character target)// Checks for the distance of the enemy from a character
@@ -110,6 +115,18 @@ namespace GADE_6112_Project2
                 default:
                     break;
             }
+        }
+        public void Loot(Character dead)
+        {
+            goldAmount += dead.goldAmount;
+            if (weapon is null && this is not Mage && dead.weapon is not null)
+            {
+                weapon = dead.weapon;
+            }
+        }
+        private void Equip(Weapon w)
+        {
+            weapon = w;
         }
         public abstract Movement ReturnMove(Movement move = 0); // returns the direction 
         public abstract override string ToString();

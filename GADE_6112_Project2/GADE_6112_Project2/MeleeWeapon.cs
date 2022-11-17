@@ -14,53 +14,52 @@ namespace GADE_6112_Project2
             LongSword
         };
         public Types _type;
-        public MeleeWeapon(int x, int y,Types _type) : base(x, y,Tile.Tiletype.Weapon)
+        public MeleeWeapon(Types weaponTypes, int x = -1, int y = -1) : base(x, y)
         {
-            this._type = _type;
-            this.Y = y;
-            this.X = x;
-            if (_type == Types.Dagger)
+            switch (weaponTypes)
             {
-                WeaponType = "Dagger";
-                Durability = 10;
-                Damage = 3;
-                Cost = 3;
-            }
-            if (_type == Types.LongSword)
-            {
-                WeaponType = "LongSword";
-                Durability = 6;
-                Damage = 4;
-                Cost = 5;
+                case Types.LongSword:
+                    this.WeaponType = "Longsword";
+                    Durability = 6;
+                    Damage = 4;
+                    Cost = 3;
+                    break;
+                case Types.Dagger:
+                    this.WeaponType = "Dagger";
+                    durability = 10;
+                    Damage = 3;
+                    Cost = 3;
+                    break;
             }
         }
 
      
 
+       
+        public MeleeWeapon(Types weaponType, int durability) : base(-1, -1)
+        {
+            switch (weaponType)
+            {
+                case Types.LongSword:
+                    this.WeaponType = "Longsword";
+                    this.durability = durability;
+                    Damage = 4;
+                    Cost = 3;
+                    break;
+                case Types.Dagger:
+                    this.WeaponType = "Dagger";
+                    this.Durability = durability;
+                    Damage = 3;
+                    Cost = 3;
+                    break;
+            }
+        }
+
+        public override int weaponRange { get => 1; }
         public override string ToString()
         {
-            string meleeInfo;
-            meleeInfo = "No information added";
-            if (_type == Types.Dagger)
-            {
-                meleeInfo = "Weapon Type: Melee \n  Name: " + WeaponType + "\n  Damage: " + Damage + "\n Cost: " + Cost;
-                return meleeInfo;
-            }
-            if (_type == Types.LongSword)
-            {
-                meleeInfo = "Weapon Type: Melee \n  Name: " + WeaponType + "\n  Damage: " + Damage + "\n Cost: " + Cost;
-                return meleeInfo;
-            }
-            else return meleeInfo;
+            return WeaponType;
         }
 
-        public override int Range
-        {
-            set { }
-
-            get { return 1; }
-
-        }
-        
     }
 }

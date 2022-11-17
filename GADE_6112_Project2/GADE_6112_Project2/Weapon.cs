@@ -19,10 +19,10 @@ namespace GADE_6112_Project2
             WeaponType = string.Empty;
 
         }
-        public int wDamage { get => Damage; }
-        public virtual int weaponRange() { return range; } // Set as virtual to be later overridden
-        public int Durability() { return durability; }
-        public int weaponCost() { return Cost; }
+        public int Dmg { get => Damage; }
+        public virtual int weaponRange { get => range; } // Set as virtual to be later overridden
+        public int Durability { get => durability; set => durability = value; }
+        public int weaponCost { get => Cost; }
         public string getWeaponType { get => WeaponType; set => WeaponType = value; }
 
         public abstract override string ToString();
