@@ -39,13 +39,22 @@ namespace GADE_6112_Project2
         public int Damage { get { return damage; } set { damage = value; } }
         public int GoldAmount { get { return goldAmount; } set { goldAmount = value; } }
         public int MaxHp { get { return maxhp; } set { maxhp = value; } }
-
+        public Weapon WeaponUsed { get { return weapon; } set { weapon = value; } }
 
         public virtual void Attack(Character target) //Attack method to decrease Hp
         {
             if (!CheckRange(target)) return;
 
-            target.hp -= this.damage;
+            if (weapon is null)
+            {
+                target.hp -= this.wDamage;
+            }
+            else
+            {
+                target.hp -= weapon.wDmg;
+                weapon.getWeaponDurability = = 1;
+                if ()
+            }
         }
 
         public bool isDead() // Checks if a character is dead 
@@ -93,6 +102,10 @@ namespace GADE_6112_Project2
                 case Gold:
                     Gold tmp = (Gold)i;
                     goldAmount += tmp.GoldAmount;
+                    break;
+                case Weapon:
+                    Weapon weapons = (Weapon)i;
+
                     break;
                 default:
                     break;

@@ -6,30 +6,25 @@ using System.Threading.Tasks;
 
 namespace GADE_6112_Project2
 {
-    abstract class Weapon : Item
+   public abstract class Weapon : Item
     {
         protected int Damage;
-
-        protected int Durability;
+        protected int range;
+        protected int durability;
         protected int Cost;
         protected string WeaponType;
 
-        public virtual int Range
+        public Weapon(int x, int y) : base(x, y)
         {
-            set { }
-
-            get { return 0; }
-        }
-        public Weapon(int x, int y, Tile.Tiletype type) : base(x, y)
-        {
-            this.X = x;
-            this.Y = y;
+            WeaponType = string.Empty;
 
         }
-        public int getWeaponDamage() { return Damage; }
-        public virtual int getWeaponRange() { return Range; } // Set as virtual to be later overridden
-        public int getWeaponDurability() { return Durability; }
-        public int getWeaponCost() { return Cost; }
-        public string getWeaponType() { return WeaponType; }
+        public int wDamage { get => Damage; }
+        public virtual int weaponRange() { return range; } // Set as virtual to be later overridden
+        public int Durability() { return durability; }
+        public int weaponCost() { return Cost; }
+        public string getWeaponType { get => WeaponType; set => WeaponType = value; }
+
+        public abstract override string ToString();
     }
 }

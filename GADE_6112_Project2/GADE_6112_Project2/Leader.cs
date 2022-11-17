@@ -11,11 +11,11 @@ namespace GADE_6112_Project2
     {
         private Tile Target;
         Random leaderMove = new Random();
-        public Leader(int x, int y) : base(x, y, 20, 20,2)
+        public Leader(int x, int y,int hp=5) : base(x, y, 20, 20,2)
         {
             this.X = x;
             this.Y = y;
-            weapon = new MeleeWeapon(MeleeWeapon.Types.LongSword);
+           this.hp = hp;
 
         }
         public void setLeaderTarget(Hero target)
@@ -27,7 +27,7 @@ namespace GADE_6112_Project2
         public int getLeaderY() { return Y; }
         public override Movement ReturnMove(Movement direction = 0) // Leader needs to try and move towards the player at all times COME BACK AND CHANGE LATER NOT EVEN REMOTELY FINISHED
         {
-            Leader leader = new Leader(this.X, this.Y);
+            Leader leader = new Leader(this.X, this.Y,Hp);
             int leaderX = leader.X;
             int leaderY = leader.Y;
             int targetX = Target.X;

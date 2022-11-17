@@ -15,7 +15,9 @@ namespace GADE_6112_Project2
             ObstacleChar = "║",
             EmptyChar = ".",
             GoldChar = "⌬",
-            MageChar = "m";///3.1
+            MageChar = "m",
+            Weaponchar = "W",
+            Leaderchar = "☯";///3.1
         public GameEngine()
         {
             map = new Map(10, 15, 10, 15, 5, 5);
@@ -154,6 +156,9 @@ namespace GADE_6112_Project2
                     case Mage:
                         map.GameMap[map.Enemies[i].Y, map.Enemies[i].X] = new Mage(map.Enemies[i].X, map.Enemies[i].Y, map.Enemies[i].Hp) { Type = Tile.Tiletype.Enemy };
                         break;
+                    case Leader:
+                        map.GameMap[map.Enemies[i].Y, map.Enemies[i].X] = new Leader(map.Enemies[i].X, map.Enemies[i].Y, map.Enemies[i].Hp) { Type = Tile.Tiletype.Enemy };
+                        break;
                 }
                 switch (direction)
                 {
@@ -191,6 +196,9 @@ namespace GADE_6112_Project2
                             map.Enemies[i].Attack(map.Enemies[j]);
                         }
                         break;
+                    case Leader:
+                        map.Enemies[i].Attack(map.HeroPlayer);
+                        break;
                     default:
                         break;
                 }
@@ -217,7 +225,10 @@ namespace GADE_6112_Project2
                             break;
                         case Tile.Tiletype.Enemy:
                             if (map.GameMap[i, j] is Swamp_Creature) stringBuilder.Append(SwampCreatureChar);
-                            else stringBuilder.Append(MageChar);
+                            else
+                                if (map.GameMap[i,j] is Mage) stringBuilder.Append(MageChar);
+                           
+                            stringBuilder.Append(Leaderchar);
                             break;
                         case Tile.Tiletype.EmptyTile:
                             stringBuilder.Append(EmptyChar);
@@ -225,6 +236,10 @@ namespace GADE_6112_Project2
                         case Tile.Tiletype.Gold:
                             stringBuilder.Append(GoldChar);//3.1
                             break;
+                        case Tile.Tiletype.Weapon:
+                            stringBuilder.Append(Weaponchar);
+                            break;
+
 
                         default:
                             break;

@@ -34,6 +34,9 @@ namespace GADE_6112_Project2
                 Cost = 5;
             }
         }
+
+     
+
         public override string ToString()
         {
             string meleeInfo;
