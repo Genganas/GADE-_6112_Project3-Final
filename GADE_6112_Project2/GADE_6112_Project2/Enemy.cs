@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GADE_6112_Project2
 {
-    abstract class Enemy : Character
+   public abstract class Enemy : Character
     {
         public Random random = new Random();
 

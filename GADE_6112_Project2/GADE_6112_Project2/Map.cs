@@ -17,12 +17,14 @@ namespace GADE_6112_Project2
         private int mapHeight, mapWidth;   //Variables for storing the map’s width and height
         private Random rnd = new Random();   // A Random object for randomising numbers.
 
-        public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int enemyCount, int goldCount)
+        public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int enemyCount, int goldCount, int weaponCount)
         {
             enemies = new Enemy[enemyCount];
-            items = new Item[goldCount];
+            items = new Item[goldCount+weaponCount];
+
             mapWidth = rnd.Next(minWidth, maxWidth);
             mapHeight = rnd.Next(minHeight, maxHeight);
+
             map = new Tile[mapWidth, mapHeight];
 
             for (int i = 0; i < mapWidth; i++)
@@ -44,11 +46,16 @@ namespace GADE_6112_Project2
             hero = (Hero)Create(Tile.Tiletype.Hero);
             hero.Hp = 99;
             hero.MaxHp = 99;
-          ///3.1 amount
-
-            for (int j = 0; j < enemyCount; j++)
+            ///3.1 amount
+            CreateLeader();
+            for (int i = 0; i < enemies.Length - 1; i++)
             {
                 Create(Tile.Tiletype.Enemy);
+            }
+
+            for (int j = 0; j < weaponCount; j++)
+            {
+                Create(Tile.Tiletype.Weapon);
             }
             for (int j = 0; j <goldCount; j++) ////3.1 
             {
@@ -160,8 +167,13 @@ namespace GADE_6112_Project2
                         AddEnemy(mage);
                         return mage;
                     }
-                   
-                
+                case Tile.Tiletype.Gold:
+                    Gold gold = new Gold(rndmX, rndmY);
+                    map[rndmX, rndmY] = gold;
+                    AddItem(gold);
+                    map[rndmY, rndmX].Type = Tile.Tiletype.Gold;
+                    return gold;
+
                 case Tile.Tiletype.Weapon:
                     Weapon weapon = rnd.Next(4) switch
                     {
@@ -177,16 +189,11 @@ namespace GADE_6112_Project2
                     AddItem(weapon);
                     return weapon;
                 default:
-                case Tile.Tiletype.Gold:
-                    Gold gold = new Gold(rndmX, rndmY);
-                    map[rndmX, rndmY] = gold;
-                    AddItem(gold);
-                    map[rndmY, rndmX].Type = Tile.Tiletype.Gold;
-                    return gold;
+               
                
                     EmptyTile empty = new EmptyTile(rndmX, rndmY);
                     map[rndmY, rndmX] = empty;
-                    map[rndmY, rndmX].Type = Tile.Tiletype.EmptyTile;
+                
                     return empty;
             }
         }

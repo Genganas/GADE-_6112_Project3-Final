@@ -40,6 +40,10 @@
             this.btnsave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnNoMove = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cmbWeapon = new System.Windows.Forms.ComboBox();
+            this.richShop = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDown
@@ -64,7 +68,7 @@
             // 
             // btnAttack
             // 
-            this.btnAttack.Location = new System.Drawing.Point(712, 346);
+            this.btnAttack.Location = new System.Drawing.Point(484, 263);
             this.btnAttack.Name = "btnAttack";
             this.btnAttack.Size = new System.Drawing.Size(94, 29);
             this.btnAttack.TabIndex = 2;
@@ -119,7 +123,7 @@
             // cmbEnemy
             // 
             this.cmbEnemy.FormattingEnabled = true;
-            this.cmbEnemy.Location = new System.Drawing.Point(896, 12);
+            this.cmbEnemy.Location = new System.Drawing.Point(484, 215);
             this.cmbEnemy.Name = "cmbEnemy";
             this.cmbEnemy.Size = new System.Drawing.Size(151, 28);
             this.cmbEnemy.TabIndex = 8;
@@ -147,7 +151,7 @@
             // 
             // btnNoMove
             // 
-            this.btnNoMove.Location = new System.Drawing.Point(953, 241);
+            this.btnNoMove.Location = new System.Drawing.Point(712, 346);
             this.btnNoMove.Name = "btnNoMove";
             this.btnNoMove.Size = new System.Drawing.Size(94, 29);
             this.btnNoMove.TabIndex = 11;
@@ -155,11 +159,49 @@
             this.btnNoMove.UseVisualStyleBackColor = true;
             this.btnNoMove.Click += new System.EventHandler(this.btnNoMove_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(976, 263);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(134, 29);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Buy Weapon";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // cmbWeapon
+            // 
+            this.cmbWeapon.FormattingEnabled = true;
+            this.cmbWeapon.Location = new System.Drawing.Point(937, 215);
+            this.cmbWeapon.Name = "cmbWeapon";
+            this.cmbWeapon.Size = new System.Drawing.Size(233, 28);
+            this.cmbWeapon.TabIndex = 13;
+            // 
+            // richShop
+            // 
+            this.richShop.Location = new System.Drawing.Point(965, 33);
+            this.richShop.Name = "richShop";
+            this.richShop.Size = new System.Drawing.Size(181, 161);
+            this.richShop.TabIndex = 14;
+            this.richShop.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1034, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 20);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Shop";
+            // 
             // gameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 455);
+            this.ClientSize = new System.Drawing.Size(1275, 455);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.richShop);
+            this.Controls.Add(this.cmbWeapon);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnNoMove);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnsave);
@@ -177,6 +219,7 @@
             this.Activated += new System.EventHandler(this.gameForm_Activated);
             this.Load += new System.EventHandler(this.gameForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -194,5 +237,9 @@
         private Button btnsave;
         private Button btnLoad;
         private Button btnNoMove;
+        private Button button1;
+        private ComboBox cmbWeapon;
+        private RichTextBox richShop;
+        private Label label1;
     }
 }

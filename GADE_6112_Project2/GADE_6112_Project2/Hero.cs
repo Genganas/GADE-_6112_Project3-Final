@@ -24,7 +24,15 @@ namespace GADE_6112_Project2
 
         public override string ToString() // String that displays the hero's stats
         {
-            return $"Player Stats: \nHP: {this.hp}/{this.maxhp} \nDamage: {this.damage} \nGold: {this.goldAmount} \n[{this.X},{this.Y}]";
+            if (weapon is null)
+            {
+                return $"Player Stats: {Environment.NewLine}HP:{hp}/{MaxHp} {Environment.NewLine}Current weapon: Bare Hands {Environment.NewLine}Weapon range: 1 {Environment.NewLine}Weapon damage: {Damage} {Environment.NewLine}[{X}, {Y}]{Environment.NewLine}Gold Amount: {goldAmount}";
+            }
+            else
+            {
+                return $"Player Stats: {Environment.NewLine}HP:{hp}/{MaxHp} {Environment.NewLine}Current weapon: {weapon.getWeaponType} {Environment.NewLine}Weapon range: {weapon.weaponRange} {Environment.NewLine}Weapon damage: {weapon.Dmg} {Environment.NewLine}Weapon Durability: {weapon.Durability} {Environment.NewLine}[{X}, {Y}]{Environment.NewLine}Gold Amount: {goldAmount}";
+
+            }
         }
 
 
