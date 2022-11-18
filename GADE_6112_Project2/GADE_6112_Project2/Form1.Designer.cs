@@ -68,9 +68,9 @@
             // 
             // btnAttack
             // 
-            this.btnAttack.Location = new System.Drawing.Point(484, 263);
+            this.btnAttack.Location = new System.Drawing.Point(566, 249);
             this.btnAttack.Name = "btnAttack";
-            this.btnAttack.Size = new System.Drawing.Size(94, 29);
+            this.btnAttack.Size = new System.Drawing.Size(217, 29);
             this.btnAttack.TabIndex = 2;
             this.btnAttack.Text = "Attack";
             this.btnAttack.UseVisualStyleBackColor = true;
@@ -108,15 +108,15 @@
             // 
             this.playerStats.Location = new System.Drawing.Point(473, 12);
             this.playerStats.Name = "playerStats";
-            this.playerStats.Size = new System.Drawing.Size(172, 182);
+            this.playerStats.Size = new System.Drawing.Size(234, 182);
             this.playerStats.TabIndex = 6;
             this.playerStats.Text = "";
             // 
             // enemyStats
             // 
-            this.enemyStats.Location = new System.Drawing.Point(667, 12);
+            this.enemyStats.Location = new System.Drawing.Point(713, 12);
             this.enemyStats.Name = "enemyStats";
-            this.enemyStats.Size = new System.Drawing.Size(172, 182);
+            this.enemyStats.Size = new System.Drawing.Size(229, 182);
             this.enemyStats.TabIndex = 7;
             this.enemyStats.Text = "";
             // 
@@ -125,7 +125,7 @@
             this.cmbEnemy.FormattingEnabled = true;
             this.cmbEnemy.Location = new System.Drawing.Point(484, 215);
             this.cmbEnemy.Name = "cmbEnemy";
-            this.cmbEnemy.Size = new System.Drawing.Size(151, 28);
+            this.cmbEnemy.Size = new System.Drawing.Size(381, 28);
             this.cmbEnemy.TabIndex = 8;
             this.cmbEnemy.SelectedIndexChanged += new System.EventHandler(this.cmbEnemy_SelectedIndexChanged);
             // 
@@ -167,6 +167,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "Buy Weapon";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cmbWeapon
             // 

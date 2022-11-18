@@ -13,7 +13,8 @@ namespace GADE_6112_Project2
     {   // Sets the swamp creatures hp to 10 and damage to 1
         public Swamp_Creature(int x, int y, int hp = 10) : base(x, y, hp, 10, 1)
         {
-            this.hp = hp;
+            weapon = new MeleeWeapon(MeleeWeapon.Types.Dagger);
+            goldAmount = 1;
         }
         // Creates random movement for the swamp creature and then checks for the an empty space to move
         public override Movement ReturnMove(Movement movement = Movement.NoMovement)
@@ -25,7 +26,7 @@ namespace GADE_6112_Project2
             //checking if all 4 tiles are full
             for (int i = 0; i < characterMoves.Length; i++)
             {
-                if (characterMoves[i].Type is not Tiletype.EmptyTile or Tiletype.Gold) filledTile++;
+                if (characterMoves[i] is not EmptyTile or Item) filledTile++;
             }
             if (filledTile >= 4) return Movement.NoMovement;
 
@@ -34,7 +35,7 @@ namespace GADE_6112_Project2
             {
                 RandomMove = random.Next(4);
 
-                drloop = !(characterMoves[RandomMove].Type is Tiletype.EmptyTile or Tiletype.Gold);
+                drloop = !(characterMoves[RandomMove] is EmptyTile or Item);
             }
 
             switch (RandomMove)

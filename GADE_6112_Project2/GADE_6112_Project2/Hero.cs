@@ -19,7 +19,7 @@ namespace GADE_6112_Project2
         public override Movement ReturnMove(Movement move)
         {
             if (move == Movement.NoMovement) return move;
-            return (CharacterMoves[(int)move].Type is Tiletype.EmptyTile or Tiletype.Gold) ? move : Movement.NoMovement;
+            return (CharacterMoves[(int)move] is EmptyTile or Item) ? move : Movement.NoMovement;
         }
 
         public override string ToString() // String that displays the hero's stats

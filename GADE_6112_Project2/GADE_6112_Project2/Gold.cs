@@ -19,7 +19,7 @@ namespace GADE_6112_Project2
         }
         public override string ToString()
         {
-            return goldAmount.ToString();
+            return "Gold";
         }
     }
 }

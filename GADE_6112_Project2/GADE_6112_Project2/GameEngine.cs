@@ -26,7 +26,7 @@ namespace GADE_6112_Project2
             Leaderchar = "♔";///3.1
         public GameEngine()
         {
-            map = new Map(10, 15, 10, 15, 5, 5,9);
+            map = new Map(15, 20, 15, 20, 5, 5,5);
             shop = new Shop(map.HeroPlayer);
         }
 
@@ -72,7 +72,7 @@ namespace GADE_6112_Project2
                         
                 }
                 map.HeroPlayer.Move(direction);
-                map.GameMap[map.HeroPlayer.Y, map.HeroPlayer.X] = new Hero(map.HeroPlayer.X, map.HeroPlayer.Y, map.HeroPlayer.Hp, map.HeroPlayer.MaxHp) { Type = Tile.Tiletype.Hero };
+                map.GameMap[map.HeroPlayer.Y, map.HeroPlayer.X] = map.HeroPlayer;
                 switch (direction)
                 {
                     //makes the tile the player was in empty after they leave.
@@ -141,9 +141,9 @@ namespace GADE_6112_Project2
                 }
                 //Moves the enemies in the requested direction
                 map.Enemies[i].Move(direction);
-                map.GameMap[map.HeroPlayer.Y, map.HeroPlayer.X] = new Hero(map.HeroPlayer.X, map.HeroPlayer.Y, map.HeroPlayer.Hp, map.HeroPlayer.MaxHp) { Type = Tile.Tiletype.Hero };
-                
-             
+                map.GameMap[map.Enemies[i].Y, map.Enemies[i].X] = map.Enemies[i];
+
+
                 switch (direction)
                 {
                     //makes the tile the enemy was in empty after they leave.
@@ -169,23 +169,32 @@ namespace GADE_6112_Project2
                 if (map.Enemies[i].isDead()) continue;
                 switch (map.Enemies[i])
                 {
-                    case Swamp_Creature:
-                        map.Enemies[i].Attack(map.HeroPlayer);
-                        break;
                     case Mage:
+                        //attacking player
                         map.Enemies[i].Attack(map.HeroPlayer);
+                        //attacking other enemies
                         for (int j = 0; j < map.Enemies.Length; j++)
                         {
+                            //prevents mages from killing themselves, but not other mages
                             if (map.Enemies[i] == map.Enemies[j]) continue;
+                            //attacking the enemy 
                             map.Enemies[i].Attack(map.Enemies[j]);
+
+                            if (map.Enemies[j].isDead())
+                            {
+                                //loot the character they killed if they're in range.
+                                if (map.Enemies[i].CheckRange(map.Enemies[j])) map.Enemies[i].Loot(map.Enemies[j]);
+
+                                //ensures that the tile of a dead enemy that a player moves into doesn't get overwritten by a blank tile.
+                                if (!(map.HeroPlayer.X == map.Enemies[j].X || map.HeroPlayer.Y == map.Enemies[j].Y)) map.GameMap[map.Enemies[j].Y, map.Enemies[j].X] = new EmptyTile(map.Enemies[j].X, map.Enemies[j].Y);
+                            }
                         }
                         break;
-                    case Leader:
+                    default:
                         map.Enemies[i].Attack(map.HeroPlayer);
                         break;
-                    default:
-                        break;
                 }
+            
                 if (map.Enemies[i].isDead())
                 {
                     map.GameMap[map.Enemies[i].Y, map.Enemies[i].X] = new EmptyTile(map.Enemies[i].X, map.Enemies[i].Y) { Type = Tile.Tiletype.EmptyTile };
@@ -510,7 +519,7 @@ namespace GADE_6112_Project2
                                 stringBuilder.Append(RifleChar);
                             }
                             else
-                                stringBuilder.Append(LongSwordChar);
+                                stringBuilder.Append(BowChar);
                             break;
                             case MeleeWeapon melee:
                             if (melee.getWeaponType == "Dagger")
@@ -528,12 +537,7 @@ namespace GADE_6112_Project2
                             break;
                         case Gold:
                             stringBuilder.Append(GoldChar);//3.1
-                            break;
-     
-
-
-                        default:
-                            break;
+                            break;     
                     }
                     stringBuilder.Append(' ');
                 }

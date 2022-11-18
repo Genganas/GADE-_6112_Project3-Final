@@ -10,13 +10,13 @@ namespace GADE_6112_Project2
    public abstract class Character : Tile
     {   ///Part 3 code
         protected Weapon? weapon;
-        public Tile[] currentVision;
+   
 
         ///
         protected int hp; // Health points 
         protected int maxhp; // Max Health
         protected int damage; // Attack damage
-        protected int goldAmount = 12;
+        protected int goldAmount;
         protected Tile[] characterMoves = new Tile[4]; // Vision array
         /// Up, Down, Left, Right, NoMovement
         public enum Movement  // Movement Enum for character
@@ -104,15 +104,13 @@ namespace GADE_6112_Project2
         {
             switch (i)
             {
-                case Gold:
-                    Gold tmp = (Gold)i;
+                case Gold tmp:
+
                     goldAmount += tmp.GoldAmount;
                     break;
-                case Weapon:
-                    Weapon weapons = (Weapon)i;
-
-                    break;
+        
                 default:
+                    Equip((Weapon)i);
                     break;
             }
         }
